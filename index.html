@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="movieApp">
+  <head>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- angular -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+
+    <!-- custom script (angular app) -->
+    <script type="text/javascript" src="app.js"></script>
+
+  </head>
+  <body ng-controller="MovieCtrl as movie">
+      <span>Search Movie:</span>
+      <input type="text" ng-model="searchMovie">
+
+      <div ng-repeat="movies in movie.moviesToWatch | orderBy:'title' | filter:searchMovie">
+        <p>Title: {{movies.title}}</p>
+      <h3> {{movies.moviesToWatch.length}}</h3>  <spandata-ng-pluralize count="movies.moviesToWatch.length" when = "{'1': 'Movie', 'other': 'Movies'}"></span>  movies to watch</ng-pluralize> to Watch
+      </div>
+  </body>
+</html>
