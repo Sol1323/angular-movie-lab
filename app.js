@@ -7,6 +7,7 @@ angular
 
     var vm = this;
 
+
     vm.moviesToWatch = [
       {
         id: 25,
@@ -34,5 +35,13 @@ angular
         genre: 'Thriller'
       }
     ];
+
+    vm.movie = {};
+       vm.addMovie = function () {
+         var newMovie = vm.movie;
+         vm.movie = {};
+         vm.moviesToWatch.push(newMovie);
+       };
+       
     console.log(vm);
   };

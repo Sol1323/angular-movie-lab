@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="movieApp">
-  <head>
+
+<head>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- angular -->
@@ -9,14 +10,29 @@
     <!-- custom script (angular app) -->
     <script type="text/javascript" src="app.js"></script>
 
-  </head>
-  <body ng-controller="MovieCtrl as movie">
-      <span>Search Movie:</span>
-      <input type="text" ng-model="searchMovie">
+</head>
 
-      <div ng-repeat="movies in movie.moviesToWatch | orderBy:'title' | filter:searchMovie">
+<body ng-controller="MovieCtrl as movies">
+
+    <div class="col-xs-8">
+        <input class="form-control" type="search" id="search-input" ng-model="searchMovie" placeholder="search for a movie">
+    </div>
+    <form ng-submit="movies.addMovie()">
+        <div class="form-group">
+            <label for="movie-title">Movie Title</label>
+            <input type="text" data-ng-model="movies.movie.title" class="form-control" placeholder="What do you want to watch?" autofocus>
+        </div>
+        <input type="submit" value="Add Movie" class="btn btn-default">
+    </form>
+    <h3> {{movies.moviesToWatch.length}}
+      <ng-pluralize count="movieCount"
+       when = "{'1': 'Movie', 'other': '{} Movies'}">
+     </ng-pluralize> to Watch
+   </h3>
+    <div ng-repeat="movies in movies.moviesToWatch | orderBy:'title' | filter:searchMovie">
         <p>Title: {{movies.title}}</p>
-      <h3> {{movies.moviesToWatch.length}}</h3>  <spandata-ng-pluralize count="movies.moviesToWatch.length" when = "{'1': 'Movie', 'other': 'Movies'}"></span>  movies to watch</ng-pluralize> to Watch
-      </div>
-  </body>
+        <p>Genre: {{movies.genre}}</p>
+    </div>
+</body>
+
 </html>
